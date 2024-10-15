@@ -16,31 +16,41 @@ public class Main {
         Socket server = new Socket("localhost", 3000);
         BufferedReader in = new BufferedReader(new InputStreamReader(server.getInputStream()));
         DataOutputStream out = new DataOutputStream(server.getOutputStream());
+        Scanner myScan = new Scanner(System.in);
+        Scanner myScan2 = new Scanner(System.in);
 
         System.out.println("Client collegato");
 
         String stringaRicevuta;
-        String stringaMaiuscola;
+        String stringaFrase;
+        String stringaScelta;
         
         do {
-            System.out.println("Scrivi qualcosa");
-            Scanner myScan = new Scanner(System.in);
-            stringaMaiuscola = myScan.nextLine();
+            System.out.println("Scrivi qualcosa: ");
+            stringaFrase = myScan.nextLine();
+            out.writeBytes(stringaFrase + '\n');;
 
-            out.writeBytes("ciao" + '\n');
+            System.out.println('\n' + "Scrivi: " + '\n' + "-'M' per trasformare la parola in maiuscolo " + 
+            '\n' + "-'m' per trasformare la parola in minuscolo " + '\n' + "-'rib' per ribaltare la stringa " + 
+            '\n' + "-'count' per contare il nuemro dei caratteri " + '\n' + "-'esc' per chiudere" + '\n');
+            stringaScelta = myScan2.nextLine();
+            out.writeBytes(stringaScelta + '\n');
+
+            stringaRicevuta = in.readLine();
+            System.out.println("Stringa ricevuta: " + stringaRicevuta);
     
-            if(stringaMaiuscola.equals("!")){
+            if(stringaScelta.equals("!")){
                 System.out.println("STOP");
                 break;
             }
-
-            System.out.println("Stringa ricevuta: " + stringaMaiuscola);
-            
-            stringaRicevuta = in.readLine();
-            System.out.println(stringaRicevuta);
-
-        } while (stringaRicevuta.equals("!"));
+    
+        } while (!stringaScelta.equals("esc"));
         
         server.close();
+        out.close();
+        in.close();
+        myScan.close();
+        myScan.close();
+        myScan2.close();
     }
 }
