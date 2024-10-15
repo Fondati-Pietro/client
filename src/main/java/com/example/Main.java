@@ -24,25 +24,17 @@ public class Main {
         String stringaRicevuta;
         String stringaFrase;
         String stringaScelta;
-        boolean x;
         
         do {
             System.out.println("Scrivi qualcosa: ");
             stringaFrase = myScan.nextLine();
             out.writeBytes(stringaFrase + '\n');;
-
-            while (x != true) {
-                System.out.println('\n' + "Scrivi: " + '\n' + "-'M' per trasformare la parola in maiuscolo " + 
-                '\n' + "-'m' per trasformare la parola in minuscolo " + '\n' + "-'rib' per ribaltare la stringa " + 
-                '\n' + "-'count' per contare il nuemro dei caratteri " + '\n' + "-'esc' per chiudere" + '\n');
-                stringaScelta = myScan2.nextLine();
-                if (!stringaScelta.equals('M') || !stringaScelta.equals('m') || !stringaScelta.equals('rib') || !stringaScelta.equals('count') || !stringaScelta.equals('esc')) {
-                    System.out.println("scelta errata, riprova" + '\n');
-                    x = false;
-                }else{
-                    x = true;
-                }
-            }
+                
+            System.out.println('\n' + "Scrivi: " + '\n' + "-'M' per trasformare la parola in maiuscolo " + 
+            '\n' + "-'m' per trasformare la parola in minuscolo " + '\n' + "-'rib' per ribaltare la stringa " + 
+            '\n' + "-'count' per contare il nuemro dei caratteri " + '\n' + "-'esc' per chiudere" + '\n');
+                
+            stringaScelta = myScan2.nextLine();
             out.writeBytes(stringaScelta + '\n');
 
             stringaRicevuta = in.readLine();
